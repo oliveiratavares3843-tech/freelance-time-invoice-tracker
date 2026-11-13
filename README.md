@@ -3,7 +3,7 @@
 A web-based time tracking, currency conversion, and automated PDF invoicing system built with **Python**, **Streamlit**, **Pandas**, and **SQLite**. Designed for remote software engineers and freelancers working with international clients.
 
 ## 🚀 Live Demo
-[Click here to open the live application](https://seu-link-aqui.streamlit.app) *(replace with your Streamlit Cloud link after deploying)*
+[https://freelance-time-invoce-tracker.streamlit.app/) *(replace with your Streamlit Cloud link after deploying)*
 
 ## ✨ Key Features
 - **Work Session Logging:** Record daily hours, hourly rates (USD), project descriptions, and client names with persistent SQLite storage.
