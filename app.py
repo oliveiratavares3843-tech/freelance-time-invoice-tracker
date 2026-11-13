@@ -145,7 +145,7 @@ def generate_invoice_pdf(df, client_name, freelancer_name, freelancer_email, inv
 init_db()
 
 # Header with User Info & Logout
-header_col1, header_col2 = st.columns([5, 1])
+header_col1, header_col2 = st.columns([4, 1])
 with header_col1:
     st.title("⏱️ Freelance Time & Invoice Tracker")
     st.markdown("Track remote work hours, calculate USD/BRL net earnings, and generate professional PDF invoices.")
@@ -250,4 +250,7 @@ else:
                 label="⬇️ Download Invoice PDF",
                 data=pdf_bytes,
                 file_name=f"{invoice_num}.pdf",
+                mime="application/pdf"
+            )
+                                           
 
