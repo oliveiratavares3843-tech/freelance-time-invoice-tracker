@@ -11,6 +11,42 @@ st.set_page_config(
     layout="wide"
 )
 
+# Authentication Credentials (Change as needed)
+VALID_USERS = {
+    "admin": "1234",
+    "euclides": "python2026"
+}
+
+if "authenticated" not in st.session_state:
+    st.session_state["authenticated"] = False
+if "current_user" not in st.session_state:
+    st.session_state["current_user"] = ""
+
+def login_screen():
+    col1, col2, col3 = st.columns([1, 1.5, 1])
+    with col2:
+        st.title("🔐 System Login")
+        st.markdown("Sign in to access the **Freelance Time & Invoice Tracker**.")
+        
+        with st.form("login_form"):
+            username = st.text_input("Username", placeholder="Enter your username")
+            password = st.text_input("Password", type="password", placeholder="Enter your password")
+            submit_login = st.form_submit_button("Sign In", use_container_width=True, type="primary")
+            
+            if submit_login:
+                if username in VALID_USERS and VALID_USERS[username] == password:
+                    st.session_state["authenticated"] = True
+                    st.session_state["current_user"] = username
+                    st.rerun()
+                else:
+                    st.error("Invalid username or password.")
+        
+        st.info("💡 **Demo Access for Recruiters:** Username `admin` | Password `1234`")
+
+if not st.session_state["authenticated"]:
+    login_screen()
+    st.stop()
+
 # Database Initialization
 def init_db():
     conn = sqlite3.connect("freelance_tracker.db")
@@ -108,8 +144,17 @@ def generate_invoice_pdf(df, client_name, freelancer_name, freelancer_email, inv
 # Initialize App
 init_db()
 
-st.title("⏱️ Freelance Time & Invoice Tracker")
-st.markdown("Track remote work hours, calculate USD/BRL net earnings, and generate professional PDF invoices.")
+# Header with User Info & Logout
+header_col1, header_col2 = st.columns([5, 1])
+with header_col1:
+    st.title("⏱️ Freelance Time & Invoice Tracker")
+    st.markdown("Track remote work hours, calculate USD/BRL net earnings, and generate professional PDF invoices.")
+with header_col2:
+    st.write(f"👤 **{st.session_state['current_user']}**")
+    if st.button("🚪 Logout", use_container_width=True):
+        st.session_state["authenticated"] = False
+        st.session_state["current_user"] = ""
+        st.rerun()
 
 # Sidebar - Currency & Tax Settings
 st.sidebar.header("💱 Exchange & Net Settings")
@@ -205,6 +250,4 @@ else:
                 label="⬇️ Download Invoice PDF",
                 data=pdf_bytes,
                 file_name=f"{invoice_num}.pdf",
-                mime="application/pdf"
-            )
 
