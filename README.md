@@ -1,9 +1,14 @@
 # ⏱️ Freelance Time & Invoice Tracker
 
+![Python](https://shields.io)
+![Streamlit](https://shields.io)
+![Pandas](https://shields.io)
+![SQLite](https://shields.io)
+
 A web-based time tracking, currency conversion, and automated PDF invoicing system built with **Python**, **Streamlit**, **Pandas**, and **SQLite**. Designed for remote software engineers and freelancers working with international clients.
 
 ## 🚀 Live Demo
-[https://freelance-time-invoce-tracker.streamlit.app/) *(replace with your Streamlit Cloud link after deploying)*
+👉 **[Access the Live Application](https://freelance-time-invoice-tracker.streamlit.app/)**
 
 ## ✨ Key Features
 - **Work Session Logging:** Record daily hours, hourly rates (USD), project descriptions, and client names with persistent SQLite storage.
@@ -33,3 +38,7 @@ A web-based time tracking, currency conversion, and automated PDF invoicing syst
    streamlit run app.py
    ```
 
+## 🔮 Future Roadmap
+- [ ] Direct payout integration via Pix / Stripe Connect APIs
+- [ ] Multi-user authentication and cloud PostgreSQL migration
+- [ ] Automated email delivery of generated PDF invoices
